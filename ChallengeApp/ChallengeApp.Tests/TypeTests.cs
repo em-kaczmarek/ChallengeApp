@@ -48,7 +48,7 @@
 
         private Employee GetEmployee(string name)
         {
-            return new Employee(name, "Kaczafi", 74);
+            return new Employee(name, "Kaczafi");
         }
     }
 }

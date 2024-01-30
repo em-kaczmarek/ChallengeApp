@@ -3,36 +3,23 @@ namespace ChallengeApp.Tests
     public class Tests
     {
         [Test]
-        public void WhenAnEmployeeCollectPositiveGradesTestShouldReturnSum()
+        public void WhenAnEmployeeCollectGradesTestShouldReturnStatistics()
         {
             //Arrange
-            var employee = new Employee("Jaros³aw", "Kaczafi", 74);
+            var employee = new Employee("Jaros³aw", "Kaczafi");
             employee.AddGrade(1);
             employee.AddGrade(2);
+            employee.AddGrade(3);
+            employee.AddGrade(4);
 
             //Act
-            var result = employee.Result;
+            var statistics = employee.GetStatistics();
 
             //Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(3, result);
-        }
-
-        [Test]
-        public void WhenAnEmployeeCollectMixedGradesTestShouldReturnSum()
-        {
-            //Arrange
-            var employee = new Employee("Adrian", "Duda", 51);
-            employee.AddGrade(10);
-            employee.AddGrade(5);
-            employee.AddGrade(-20);
-
-            //Act
-            var result = employee.Result;
-
-            //Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(-5, result);
+            Assert.NotNull(statistics);
+            Assert.AreEqual(1, statistics.Min);
+            Assert.AreEqual(4, statistics.Max);
+            Assert.AreEqual(2.5, statistics.Average);
         }
     }
 }
