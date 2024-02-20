@@ -8,14 +8,22 @@ var employee = new Employee("Mikołaj", "Kaczmarek");
 
 while (true)
 {
-    Console.WriteLine($"Please insert {employee.Name} {employee.Surname} grade:");
+    Console.WriteLine($"\nPlease insert {employee.Name} {employee.Surname} grade:");
     var input = Console.ReadLine();
 
     if (input == "q")
     {
         break;
     }
-    employee.AddGrade(input);
+
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Exception catched: {ex.Message}");
+    }
 }
 
 var statisticts = employee.GetStatistics();
