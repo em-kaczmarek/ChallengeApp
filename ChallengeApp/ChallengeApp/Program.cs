@@ -8,7 +8,7 @@ var employee = new Employee("Mikołaj", "Kaczmarek");
 
 while (true)
 {
-    Console.WriteLine($"\nPlease insert {employee.Name} {employee.Surname} grade:");
+    Console.WriteLine($"\nPlease insert {employee.Name} {employee.Surname} {employee.Sex} {employee.Age} grade:");
     var input = Console.ReadLine();
 
     if (input == "q")
@@ -29,7 +29,7 @@ while (true)
 var statisticts = employee.GetStatistics();
 Console.WriteLine("");
 Console.WriteLine("Statistics");
-Console.WriteLine($"Employee: {employee.Name} {employee.Surname}");
+Console.WriteLine($"Employee: {employee.Name} {employee.Surname} {employee.Sex} {employee.Age}");
 Console.WriteLine($"Min grade: {statisticts.Min}");
 Console.WriteLine($"Max grade: {statisticts.Max}");
 Console.WriteLine($"Grade average: {statisticts.Average:N2}");
