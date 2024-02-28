@@ -1,10 +1,10 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         private List<float> grades = new();
 
-        public Employee(string name, string surname, char sex, int age)
+        public Supervisor(string name, string surname, char sex, int age)
         {
             this.Name = name;
             this.Surname = surname;
@@ -34,57 +34,82 @@
 
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            if (grade.Length == 1)
             {
-                AddGrade(result);
+                if (float.TryParse(grade, out float result))
+                {
+                    AddGrade(grade[0]);
+                }
+                else
+                {
+                    throw new Exception("Grade is not a number!");
+                }
             }
-            else if (char.TryParse(grade, out char resultChar))
+            else if (grade.Length == 2)
             {
-                AddGrade(resultChar);
+                if (char.IsDigit(grade[0]) && grade[1] == '-')
+                {
+                    AddGrade(grade[0], '-');
+                }
+                else if (char.IsDigit(grade[0]) && grade[1] == '+')
+                {
+                    AddGrade(grade[0], '+');
+                }
+                else if (char.IsDigit(grade[1]) && grade[0] == '-')
+                {
+                    AddGrade(grade[1], '-');
+                }
+                else if (char.IsDigit(grade[1]) && grade[0] == '+')
+                {
+                    AddGrade(grade[1], '+');
+                }
+                else
+                {
+                    throw new Exception("Grade is not correct!");
+                }
             }
             else
             {
-                throw new Exception("String is not a float!");
+                throw new Exception("Grade is too long!");
             }
         }
 
-        public void AddGrade(char grade)
+        public void AddGrade(char grade, char sign = ' ')
         {
+            var signValue = 0;
+
+            if (grade != '1' && sign == '-')
+            {
+                signValue = -5;
+            }
+            else if (grade != '6' && sign == '+')
+            {
+                signValue = 5;
+            }
+
             switch (grade)
             {
-                case 'A':
-                case 'a':
-                    AddGrade(100);
+                case '6':
+                    AddGrade(100 + signValue);
                     break;
-                case 'B':
-                case 'b':
-                    AddGrade(80);
+                case '5':
+                    AddGrade(80 + signValue);
                     break;
-                case 'C':
-                case 'c':
-                    AddGrade(60);
+                case '4':
+                    AddGrade(60 + signValue);
                     break;
-                case 'D':
-                case 'd':
-                    AddGrade(40);
+                case '3':
+                    AddGrade(40 + signValue);
                     break;
-                case 'E':
-                case 'e':
-                    AddGrade(20);
+                case '2':
+                    AddGrade(20 + signValue);
+                    break;
+                case '1':
+                    AddGrade(10 + signValue);
                     break;
                 default:
                     throw new Exception("Wrong letter");
             }
-        }
-
-        public void AddGrade(int grade)
-        {
-            AddGrade((float)grade);
-        }
-
-        public void AddGrade(double grade)
-        {
-            AddGrade((float)grade);
         }
 
         public Statistics GetStatistics()
@@ -125,5 +150,6 @@
 
             return statistics;
         }
+
     }
 }

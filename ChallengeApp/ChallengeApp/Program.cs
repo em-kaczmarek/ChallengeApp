@@ -1,14 +1,14 @@
 ﻿using ChallengeApp;
 
-Console.WriteLine("Welcome to the program for adding employee grades");
+Console.WriteLine("Welcome to the program for adding supervisior grades");
 Console.WriteLine("For results press \"q\"");
 Console.WriteLine("=================================================");
 
-var employee = new Employee("Mikołaj", "Kaczmarek");
+var supervisior = new Supervisor("Sandra", "Kaczmarek", 'F', 34);
 
 while (true)
 {
-    Console.WriteLine($"\nPlease insert {employee.Name} {employee.Surname} {employee.Sex} {employee.Age} grade:");
+    Console.WriteLine($"\nPlease insert {supervisior.Name} {supervisior.Surname} {supervisior.Sex} {supervisior.Age} grade:");
     var input = Console.ReadLine();
 
     if (input == "q")
@@ -18,7 +18,7 @@ while (true)
 
     try
     {
-        employee.AddGrade(input);
+        supervisior.AddGrade(input);
     }
     catch (Exception ex)
     {
@@ -26,11 +26,11 @@ while (true)
     }
 }
 
-var statisticts = employee.GetStatistics();
+var supervisiorStatisticts = supervisior.GetStatistics();
 Console.WriteLine("");
 Console.WriteLine("Statistics");
-Console.WriteLine($"Employee: {employee.Name} {employee.Surname} {employee.Sex} {employee.Age}");
-Console.WriteLine($"Min grade: {statisticts.Min}");
-Console.WriteLine($"Max grade: {statisticts.Max}");
-Console.WriteLine($"Grade average: {statisticts.Average:N2}");
-Console.WriteLine($"Letter grade average: {statisticts.AverageLetter:N2}");
+Console.WriteLine($"Employee: {supervisior.Name} {supervisior.Surname} {supervisior.Sex} {supervisior.Age}");
+Console.WriteLine($"Min grade: {supervisiorStatisticts.Min}");
+Console.WriteLine($"Max grade: {supervisiorStatisticts.Max}");
+Console.WriteLine($"Grade average: {supervisiorStatisticts.Average:N2}");
+Console.WriteLine($"Letter grade average: {supervisiorStatisticts.AverageLetter:N2}");

@@ -1,12 +1,12 @@
 namespace ChallengeApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
         public void WhenAnEmployeeCollectGradesTestShouldReturnStatistics()
         {
             //Arrange
-            var employee = new Employee("Jaros³aw", "Kaczafi");
+            var employee = new Employee("Jaros³aw", "Kaczafi", 'M', 999);
             employee.AddGrade("10");
             employee.AddGrade(20);
             employee.AddGrade(30);
